@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
 
@@ -5,6 +6,14 @@
 #include "algorithms.h"
 
 int main(int argc, char **argv) {
+
+    size_t max_n = 100;
+    size_t step_n = 10;
+    if (argc == 3) {
+        max_n = atoi(argv[1]);
+        step_n = atoi(argv[2]);
+    }
+
     FILE *csv_out = fopen("../data/results.csv", "w");
     fprintf(csv_out, "n,smm_duration_s,smmr_duration_s,sm_duration_s");
     printf("n, smm_duration_s, smmr_duration_s, sm_duration_s\n");
@@ -13,7 +22,7 @@ int main(int argc, char **argv) {
     double smm_duration, smmr_duration, sm_duration;
     Matrix smm_matrix, smmr_matrix, sm_matrix;
     Matrix left_matrix, right_matrix;
-    for (size_t n = 1; n <= 10000; n *= 10) {
+    for (size_t n = 0; n <= max_n; n += step_n) {
         left_matrix = random_matrix(n, -10., 10.);
         right_matrix = random_matrix(n, -10., 10.);
 
@@ -32,10 +41,14 @@ int main(int argc, char **argv) {
         end_time = clock();
         sm_duration = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
-        printf("%ld, %lf, %lf, %lf\n", n, smm_duration, smmr_duration, sm_duration);
+        if (n % (10 * step_n) == 0) {
+            printf("\r%ld, %lf, %lf, %lf", n, smm_duration, smmr_duration, sm_duration);
+            fflush(stdout);
+        }
         fprintf(csv_out, "%ld,%lf,%lf,%lf\n", n, smm_duration, smmr_duration, sm_duration);
     }
 
+    printf("\n");
     fclose(csv_out);
 
 	return 0;
