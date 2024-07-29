@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     }
 
     FILE *csv_out = fopen("../data/results.csv", "w");
-    fprintf(csv_out, "n,smm_duration_s,smmr_duration_s,sm_duration_s");
+    fprintf(csv_out, "n,smm_duration_s,smmr_duration_s,sm_duration_s\n");
     printf("n, smm_duration_s, smmr_duration_s, sm_duration_s\n");
 
     clock_t start_time, end_time;
