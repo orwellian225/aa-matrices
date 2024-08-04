@@ -7,8 +7,16 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED On)
 set(CMAKE_C_EXTENSIONS Off)
 
-add_executable(matrix-testing
+add_executable(matrix-run
 	src/main.c src/matrix.c src/algorithms.c
 )
-target_include_directories(matrix-testing PUBLIC include)
-target_link_directories(matrix-testing PRIVATE src)
+target_link_libraries(matrix-run m)
+target_include_directories(matrix-run PUBLIC include)
+target_link_directories(matrix-run PRIVATE src)
+
+add_executable(matrix-test
+	src/test.c src/matrix.c src/algorithms.c
+)
+target_link_libraries(matrix-test m)
+target_include_directories(matrix-test PUBLIC include)
+target_link_directories(matrix-test PRIVATE src)
