@@ -67,7 +67,10 @@ int main(int argc, char **argv) {
         bool strassen_correct = equal_matrices(&smm_matrix, &sm_matrix);
 
         printf("%ld, %lf, %lf, %lf, %b, %b\n", n, smm_duration, smmr_duration, sm_duration, smmr_correct, strassen_correct);
-        fprintf(csv_out, "%ld, %lf, %lf, %lf, %b, %b\n", n, smm_duration, smmr_duration, sm_duration, smmr_correct, strassen_correct);
+        fprintf(csv_out, "%ld,smm,%lf,1\n", n, smm_duration);
+        fprintf(csv_out, "%ld,smmr,%lf,%b\n", n, smmr_duration, smmr_correct);
+        fprintf(csv_out, "%ld,strassen,%lf,%b\n", n, sm_duration, strassen_correct);
+        /*fprintf(csv_out, "%ld, %lf, %lf, %lf, %b, %b\n", n, smm_duration, smmr_duration, sm_duration, smmr_correct, strassen_correct);*/
 
         if (!smmr_correct && show_errors) {
             printf("SMM\n");

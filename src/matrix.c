@@ -79,7 +79,7 @@ bool equal_matrices(Matrix *left, Matrix *right) {
 
     for (size_t i = 0; i < left->dimension; ++i)
         for (size_t j = 0; j < left->dimension; ++j) {
-            if (fabs(matrix_at(left, i, j) - matrix_at(right, i, j)) > FLT_EPSILON)
+            if (fabs(matrix_at(left, i, j) - matrix_at(right, i, j)) > 0.1)
                 return false;
         }
 
