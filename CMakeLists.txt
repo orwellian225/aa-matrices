@@ -7,6 +7,11 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED On)
 set(CMAKE_C_EXTENSIONS Off)
 
+# set(CMAKE_C_FLAGS "-O0")
+# set(CMAKE_C_FLAGS "-O1")
+# set(CMAKE_C_FLAGS "-O2")
+# set(CMAKE_C_FLAGS "-O3")
+
 add_executable(matrix-run
 	src/main.c src/matrix.c src/algorithms.c
 )
