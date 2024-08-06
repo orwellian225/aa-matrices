@@ -7,8 +7,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
-max_n = 32
-step = 8
+max_n = 8192
+step = 1024
 
 if len(sys.argv) == 3:
     max_n = int(sys.argv[1])
@@ -47,4 +47,4 @@ ax = sns.lineplot(data=mem_data.select(
 ax.set_title("Algorithm Memory Usage")
 ax.set_xscale("log", base=2)
 ax.xaxis.set_major_formatter(FuncFormatter(lambda x, pos: str(int(x))))
-plt.savefig("data/memusage.pdf")
+plt.savefig("data/memusage_long.pdf")
